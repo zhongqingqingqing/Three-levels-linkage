@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+.select {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  white-space: nowrap;
+  color: #666;
+}
+
+.title {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 150px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.title .iconfont {
+  font-size: 10px;
+  transition: all 0.25s;
+}
+
+.options {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* 最小宽度（和父元素一样），大了可以撑开 */
+  min-width: 100%;
+  /* 最大高度，超出换行 */
+  max-height: 300px;
+  position: absolute;
+  font-size: 12px;
+  padding: 10px;
+  top: 50px;
+  background: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+
+  /* 网格布局 */
+  display: grid;
+  /* 更改主轴方向（以列的形式排队） */
+  grid-auto-flow: column;
+  /* 每一行自适应（多少行不确定） */
+  grid-template-rows: repeat(auto-fit, 20px);
+  /* 单元格的间隙 */
+  row-gap: 6px;
+  column-gap: 26px;
+  /* 让每一项不用占满单元格 */
+  justify-items: left;
+
+  /* 默认隐藏  */
+  transform: scaleY(0);
+  transition: all 0.25s;
+  transform-origin: center -10px;
+  opacity: 0;
+}
+
+.options li {
+  padding: 3px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.options::before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 70px;
+  top: -6px;
+  border: 1px solid #ccc;
+  transform: rotate(45deg);
+  border-bottom: transparent;
+  border-right: transparent;
+  background: #fff;
+}
+
+.options li.active {
+  background: #eec05a;
+}
+
+.select.expand .options {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.select.expand .title .iconfont {
+  transform: rotate(180deg);
+}
+
+.select.disabled {
+  color: #ccc;
+}
+.select.disabled .title {
+  cursor: not-allowed;
+}
